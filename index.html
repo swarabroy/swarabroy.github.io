@@ -92,20 +92,24 @@
 
         /* Profile Circle update */
 .profile-circle {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 5px solid var(--bg);
-    padding: 5px;
-    background: var(--bg);
-    margin-bottom: 20px;
-    box-shadow: var(--neon-shadow);
-    transition: transform 0.3s;
-    
-    /* নিচের এই লাইনটি নিশ্চিত করবে যেন স্কয়ার বক্স দেখা না যায় */
-    overflow: hidden !important; 
     position: relative;
-    z-index: 10;
+    overflow: hidden !important;
+    border-radius: 50%;
+}
+
+/* ২. সব কার্ডের জন্য গ্লেয়ার ইফেক্টকে কার্ডের শেপ অনুযায়ী অ্যাডজাস্ট করা */
+.skill-card, .exp-card, .poster-card, .glass-panel {
+    position: relative;
+    overflow: hidden !important; /* কার্ডের বাইরে গ্লেয়ার যাবে না */
+}
+
+/* ৩. গ্লেয়ারের গোল ভাব সরিয়ে ডিফল্ট করা যাতে কার্ডের শেপ নেয় */
+.js-tilt-glare {
+    border-radius: inherit !important; /* কার্ডের যে বর্ডার রেডিয়াস আছে, গ্লেয়ার সেটাই নেবে */
+}
+
+.js-tilt-glare-inner {
+    border-radius: inherit !important;
 }
 
 /* Glare effect কে গোল করার জন্য এটি যোগ করো */
