@@ -84,29 +84,32 @@
             background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
         }
 
-        .profile-content {
-            display: flex; flex-direction: column; align-items: center;
-            margin-top: -120px;
-            position: relative; z-index: 10; text-align: center;
-        }
-
-        /* Profile Circle update */
-/* ১. প্রোফাইল সার্কেল ঠিক রাখার জন্য */
+        /* Profile Circle Fix */
 .profile-circle {
+    width: 220px; /* নির্দিষ্ট সাইজ */
+    height: 220px; /* নির্দিষ্ট সাইজ */
+    border-radius: 50%;
+    border: 5px solid var(--bg);
+    padding: 5px;
+    background: var(--bg);
+    margin-bottom: 20px;
+    box-shadow: var(--neon-shadow);
+    transition: transform 0.3s;
     position: relative;
-    overflow: hidden !important;
+    overflow: hidden !important; /* যাতে ইমেজ বা গ্লেয়ার বাইরে না যায় */
+    z-index: 10;
+}
+
+.profile-circle img {
+    width: 100%; /* কন্টেইনারের ভেতরে ফিট হবে */
+    height: 100%; /* কন্টেইনারের ভেতরে ফিট হবে */
+    object-fit: cover; /* ইমেজ রেশিও ঠিক রাখবে */
     border-radius: 50%;
 }
 
-/* ২. সব কার্ডের জন্য গ্লেয়ার ইফেক্টকে কার্ডের শেপ অনুযায়ী অ্যাডজাস্ট করা */
-.skill-card, .exp-card, .poster-card, .glass-panel {
-    position: relative;
-    overflow: hidden !important; /* কার্ডের বাইরে গ্লেয়ার যাবে না */
-}
-
-/* ৩. গ্লেয়ারের গোল ভাব সরিয়ে ডিফল্ট করা যাতে কার্ডের শেপ নেয় */
+/* Glare Shape Fix */
 .js-tilt-glare {
-    border-radius: inherit !important; /* কার্ডের যে বর্ডার রেডিয়াস আছে, গ্লেয়ার সেটাই নেবে */
+    border-radius: inherit !important;
 }
 
 .js-tilt-glare-inner {
