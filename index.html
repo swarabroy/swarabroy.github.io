@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swarab Roy | Professional Portfolio</title>
     <meta name="google-site-verification" content="kESt3x0oMC-MlDX7bwKnabZOU8vf4nuqOM3H_oPNqa8" />
-    <!-- Title tag (Google-e jeta prothome dekhabe) -->
-<title>Swarab Roy | Graphic Designer & Social Media Marketer</title>
+    <!-- Title tag -->
+    <title>Swarab Roy | Graphic Designer & Social Media Marketer</title>
 
-<!-- Description (Website-er niche chotto description) -->
-<meta name="description" content="Portfolio of Swarab Roy, a Graphic Designer and Social Media Marketer based in Malda. Expert in branding, logo design, and digital marketing.">
+    <!-- Description -->
+    <meta name="description" content="Portfolio of Swarab Roy, a Graphic Designer and Social Media Marketer based in Malda. Expert in branding, logo design, and digital marketing.">
 
-<!-- Keywords -->
-<meta name="keywords" content="Swarab Roy, Graphic Designer Malda, Social Media Marketer, Portfolio, Zyra Studio, best designer in malda,Swarab Roy - Best Graphic Designer in Malda, West Bengal. Specialized in Logo Design, Digital Ads, and Social Media Branding with 3+ years of experience.">
-    <!-- Favicon Add করা হলো -->
+    <!-- Keywords -->
+    <meta name="keywords" content="Swarab Roy, Graphic Designer Malda, Social Media Marketer, Portfolio, Zyra Studio, best designer in malda,Swarab Roy - Best Graphic Designer in Malda, West Bengal. Specialized in Logo Design, Digital Ads, and Social Media Branding with 3+ years of experience.">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
@@ -43,6 +44,47 @@
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        /* ================= Animated Blurred Background ================= */
+        .bg-blobs {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2; /* Keeps it behind everything */
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px); /* Makes it super blurry and soft */
+            opacity: 0.3; /* Low opacity so it's not distracting */
+            animation: float-blobs 20s infinite alternate ease-in-out;
+        }
+        .blob-1 {
+            width: 500px; height: 500px;
+            background: var(--primary); /* Cyan */
+            top: -100px; left: -100px;
+        }
+        .blob-2 {
+            width: 600px; height: 600px;
+            background: #3b82f6; /* Deep Blue */
+            bottom: -150px; right: -100px;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+        .blob-3 {
+            width: 450px; height: 450px;
+            background: var(--secondary); /* Light Blue */
+            top: 40%; left: 30%;
+            animation-delay: -10s;
+            animation-duration: 30s;
+        }
+
+        @keyframes float-blobs {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(150px, 100px) scale(1.1); }
+            100% { transform: translate(-100px, 200px) scale(0.9); }
         }
 
         /* Custom Cursor */
@@ -231,8 +273,16 @@
 </head>
 <body id="home">
 
+    <!-- Custom Cursor -->
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
+
+    <!-- Animated Blurred Background -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <nav class="navbar">
         <a href="#home" class="nav-logo">SR.</a>
