@@ -90,11 +90,28 @@
             position: relative; z-index: 10; text-align: center;
         }
 
-        .profile-circle {
-            width: 220px; height: 220px; border-radius: 50%; border: 5px solid var(--bg);
-            padding: 5px; background: var(--bg); margin-bottom: 20px;
-            box-shadow: var(--neon-shadow); transition: transform 0.3s;
-        }
+        /* Profile Circle update */
+.profile-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 5px solid var(--bg);
+    padding: 5px;
+    background: var(--bg);
+    margin-bottom: 20px;
+    box-shadow: var(--neon-shadow);
+    transition: transform 0.3s;
+    
+    /* নিচের এই লাইনটি নিশ্চিত করবে যেন স্কয়ার বক্স দেখা না যায় */
+    overflow: hidden !important; 
+    position: relative;
+    z-index: 10;
+}
+
+/* Glare effect কে গোল করার জন্য এটি যোগ করো */
+.js-tilt-glare, .js-tilt-glare-inner {
+    border-radius: 50% !important;
+}
         .profile-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
         .profile-circle:hover { transform: scale(1.05); }
 
