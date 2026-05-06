@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyra Studio - Auto Reels</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #050505; color: #fff; font-family: sans-serif; overflow: hidden; }
+
+        /* Liquid Neon Background */
+        .page-background {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; filter: blur(100px); opacity: 0.5;
+        }
+        .neon-orb { position: absolute; border-radius: 50%; animation: move 15s infinite alternate; }
+        .orb1 { width: 300px; height: 300px; background: #ff00ff; top: 10%; left: 10%; }
+        .orb2 { width: 400px; height: 400px; background: #00ffff; bottom: 10%; right: 10%; }
+        @keyframes move { 0% { transform: translate(0,0); } 100% { transform: translate(50px, 100px); } }
+
+        .reels-container {
+            width: 100%; height: 100vh;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+        .reels-container::-webkit-scrollbar { display: none; }
+
+        .reel {
+            width: 100%; height: 100vh;
+            scroll-snap-align: start;
+            display: flex; justify-content: center; align-items: center;
+            padding: 10px;
+        }
+
+        .reel-glass-card {
+            width: 100%; max-width: 380px; height: 85vh;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden; position: relative;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .loading-text {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255,255,255,0.2); z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-background">
+        <div class="neon-orb orb1"></div>
+        <div class="neon-orb orb2"></div>
+    </div>
+
+    <div class="reels-container" id="reelsContainer">
+        <!-- Reel Items -->
+        <div class="reel" data-video-id="1d4W1ZGrzhytunEjpFMYED-7b1LrKHbhJ">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1novoveQIuiwH2oNuYh5Bkgs8705eW4Ty">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1CAr7M9Qy6_pPVVh61SqRJbkWf15SzL6d">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1wwbzRuBZIPWMl5ErBIvuLMcSjF_V1SkH">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1UbOCdxTe8ncguriogrjKX9FxGpU79PuD">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1aGwnHkzOd0fpCSjI2PHxAuRd4Ijgrqvq">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="1HOSuMSap88V_iBRjLEdLozSP85gYOYiP">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+        <div class="reel" data-video-id="17NzOQiJJzxCSK7L7x8NXJKCih5BktLvW">
+            <div class="reel-glass-card"><iframe src="" allow="autoplay"></iframe></div>
+        </div>
+    </div>
+
+    <script>
+        const reels = document.querySelectorAll('.reel');
+        
+        const observerOptions = {
+            root: document.getElementById('reelsContainer'),
+            threshold: 0.7 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const iframe = entry.target.querySelector('iframe');
+                const videoId = entry.target.getAttribute('data-video-id');
+                
+                // গুগল ড্রাইভের অটো-প্লে ট্রিক লিঙ্ক
+                const autoPlayUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
+
+                if (entry.isIntersecting) {
+                    if (iframe.src !== autoPlayUrl) {
+                        iframe.src = autoPlayUrl;
+                    }
+                } else {
+                    iframe.src = ""; // ভিডিও স্ক্রিন থেকে চলে গেলে স্টপ হয়ে যাবে
+                }
+            });
+        }, observerOptions);
+
+        reels.forEach(reel => observer.observe(reel));
+
+        // ইউজার একবার টাচ করলেই যাতে সব অটো-প্লে পারমিশন পায়
+        document.body.addEventListener('click', function() {
+            console.log("User active - Autoplay enabled");
+        }, {once: true});
+    </script>
+
+</body>
+</html>
